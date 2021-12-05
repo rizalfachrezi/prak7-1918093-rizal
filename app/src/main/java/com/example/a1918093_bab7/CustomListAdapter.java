@@ -14,19 +14,19 @@ import java.util.List;
 public class CustomListAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
-    private List<Mahasiswa> Mahasiswa;
-    public CustomListAdapter(Activity activity, List<Mahasiswa>
-            Mahasiswa) {
+    private List<Sablon> Sablon;
+    public CustomListAdapter(Activity activity, List<Sablon>
+            Sablon) {
         this.activity = activity;
-        this.Mahasiswa = Mahasiswa;
+        this.Sablon = Sablon;
     }
     @Override
     public int getCount() {
-        return Mahasiswa.size();
+        return Sablon.size();
     }
     @Override
     public Object getItem(int location) {
-        return Mahasiswa.get(location);
+        return Sablon.get(location);
     }
     @Override
     public long getItemId(int position) {
@@ -42,15 +42,15 @@ public class CustomListAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.custom_list,
                     null);
-        TextView nama = (TextView)
-                convertView.findViewById(R.id.text_nama);
-        TextView kelas = (TextView)
-                convertView.findViewById(R.id.text_kelas);
+        TextView jenis = (TextView)
+                convertView.findViewById(R.id.text_jenis);
+        TextView harga = (TextView)
+                convertView.findViewById(R.id.text_harga);
         ImageView imageView = (ImageView)
                 convertView.findViewById(R.id.iconid);
-        Mahasiswa m = Mahasiswa.get(position);
-        nama.setText("Nama : "+ m.get_nama());
-        kelas.setText("Kelas : "+ m.get_kelas());
+        Sablon m = Sablon.get(position);
+        jenis.setText("Jenis : "+ m.get_jenis());
+        harga.setText("Harga : "+ m.get_harga());
         return convertView;
     }
 }

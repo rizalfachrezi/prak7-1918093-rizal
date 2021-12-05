@@ -11,39 +11,39 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainCreate extends AppCompatActivity {
     private MyDatabase db;
-    private EditText Enama, Ekelas;
-    private String Snama, Skelas;
+    private EditText Ejenis, Eharga;
+    private String Sjenis, Sharga;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_create);
         db = new MyDatabase(this);
-        Enama = (EditText) findViewById(R.id.create_nama);
-        Ekelas = (EditText) findViewById(R.id.create_kelas);
+        Ejenis = (EditText) findViewById(R.id.create_Jenis);
+        Eharga = (EditText) findViewById(R.id.create_Harga);
         Button btnCreate = (Button)
                 findViewById(R.id.create_btn);
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snama = String.valueOf(Enama.getText());
-                Skelas = String.valueOf(Ekelas.getText());
-                if (Snama.equals("")){
-                    Enama.requestFocus();
+                Sjenis = String.valueOf(Ejenis.getText());
+                Sharga = String.valueOf(Eharga.getText());
+                if (Sjenis.equals("")){
+                    Ejenis.requestFocus();
                     Toast.makeText(MainCreate.this, "Silahkan isi nama",
                             Toast.LENGTH_SHORT).show();
                 }
-                else if (Skelas.equals("")) {
-                    Ekelas.requestFocus();
+                else if (Sharga.equals("")) {
+                    Eharga.requestFocus();
                     Toast.makeText(MainCreate.this, "Silahkan isi kelas",
                             Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Enama.setText("");
-                    Ekelas.setText("");
+                    Ejenis.setText("");
+                    Eharga.setText("");
                     Toast.makeText(MainCreate.this, "Data telah ditambah",
                             Toast.LENGTH_SHORT).show();
-                    db.CreateMahasiswa(new Mahasiswa(null, Snama,
-                            Skelas));
+                    db.CreateSablon(new Sablon(null, Sjenis,
+                            Sharga));
                     Intent a = new Intent(MainCreate.this,
                             MainActivity.class);
                     startActivity(a);

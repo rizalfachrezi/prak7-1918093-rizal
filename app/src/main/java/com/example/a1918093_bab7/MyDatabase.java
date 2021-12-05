@@ -11,65 +11,65 @@ import java.util.List;
 
 public class MyDatabase extends SQLiteOpenHelper {
     private static int DATABASE_VERSION = 1;
-    private static String DATABASE_NAME = "db_kampus";
-    private static final String tb_mahasiswa = "tb_mahasiswa";
-    private static final String tb_mahasiswa_id = "id";
-    private static final String tb_mahasiswa_nama = "nama";
-    private static final String tb_mahasiswa_kelas = "kelas";
-    private static final String CREATE_TABLE_MAHASISWA = "CREATE TABLE "
-            + tb_mahasiswa +"("
-            + tb_mahasiswa_id + " INTEGER PRIMARY KEY ,"
-            + tb_mahasiswa_nama + " TEXT ,"
-            + tb_mahasiswa_kelas + " TEXT " + ")";
+    private static String DATABASE_NAME = "db_konveksi";
+    private static final String tb_sablon = "tb_sablon";
+    private static final String tb_sablon_id = "id";
+    private static final String tb_sablon_jenis = "jenis";
+    private static final String tb_sablon_harga = "harga";
+    private static final String CREATE_TABLE_Sablon = "CREATE TABLE "
+            + tb_sablon +"("
+            + tb_sablon_id + " INTEGER PRIMARY KEY ,"
+            + tb_sablon_jenis + " TEXT ,"
+            + tb_sablon_harga + " TEXT " + ")";
     public MyDatabase (Context context){
         super(context, DATABASE_NAME, null , DATABASE_VERSION);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_MAHASISWA);
+        db.execSQL(CREATE_TABLE_Sablon);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int
             newVersion) {
     }
-    public void CreateMahasiswa(Mahasiswa data){
+    public void CreateSablon(Sablon data){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(tb_mahasiswa_id, data.get_id());
-        values.put(tb_mahasiswa_nama, data.get_nama());
-        values.put(tb_mahasiswa_kelas, data.get_kelas());
-        db.insert(tb_mahasiswa, null, values);
+        values.put(tb_sablon_id, data.get_id());
+        values.put(tb_sablon_jenis, data.get_jenis());
+        values.put(tb_sablon_harga, data.get_harga());
+        db.insert(tb_sablon, null, values);
         db.close();
     }
-    public List<Mahasiswa> ReadMahasiswa() {
-        List<Mahasiswa> listMhs = new ArrayList<Mahasiswa>();
-        String selectQuery = "SELECT * FROM " + tb_mahasiswa;
+    public List<Sablon> ReadSablon() {
+        List<Sablon> listMhs = new ArrayList<Sablon>();
+        String selectQuery = "SELECT * FROM " + tb_sablon;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             do {
-                Mahasiswa data = new Mahasiswa();
+                Sablon data = new Sablon();
                 data.set_id(cursor.getString(0));
-                data.set_nama(cursor.getString(1));
-                data.set_kelas(cursor.getString(2));
+                data.set_jenis(cursor.getString(1));
+                data.set_harga(cursor.getString(2));
                 listMhs.add(data);
             } while (cursor.moveToNext());
         }
         db.close();
         return listMhs;
     }
-    public int UpdateMahasiswa (Mahasiswa data){
+    public int UpdateSablon (Sablon data){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(tb_mahasiswa_nama, data.get_nama());
-        values.put(tb_mahasiswa_kelas, data.get_kelas());
-        return db.update(tb_mahasiswa, values, tb_mahasiswa_id +
+        values.put(tb_sablon_jenis, data.get_jenis());
+        values.put(tb_sablon_harga, data.get_harga());
+        return db.update(tb_sablon, values, tb_sablon_id +
                         " = ?",
                 new String[]{String.valueOf((data.get_id()))});
     }
-    public void DeleteMahasiswa(Mahasiswa data){
+    public void DeleteSablon(Sablon data){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(tb_mahasiswa,tb_mahasiswa_id+ " = ?",
+        db.delete(tb_sablon,tb_sablon_id+ " = ?",
                 new String[]{String.valueOf(data.get_id())});
         db.close();
     }

@@ -16,28 +16,28 @@ public class MainRead extends AppCompatActivity implements AdapterView.OnItemCli
     private ListView mListView;
     private CustomListAdapter adapter_off;
     private MyDatabase db;
-    private List<Mahasiswa> ListMahasiswa = new
-            ArrayList<Mahasiswa>();
+    private List<Sablon> listSablon = new
+            ArrayList<Sablon>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_read);
         db = new MyDatabase(this);
-        adapter_off = new CustomListAdapter(this, ListMahasiswa
+        adapter_off = new CustomListAdapter(this, listSablon
         );
-        mListView = (ListView) findViewById(R.id.list_mahasiswa);
+        mListView = (ListView) findViewById(R.id.list_sablon);
         mListView.setAdapter(adapter_off);
         mListView.setOnItemClickListener(this);
         mListView.setClickable(true);
-        ListMahasiswa.clear();
-        List<Mahasiswa> mahasiswa = db.ReadMahasiswa();
-        for (Mahasiswa mhs : mahasiswa) {
-            Mahasiswa daftar = new Mahasiswa();
+        listSablon.clear();
+        List<Sablon> sablon = db.ReadSablon();
+        for (Sablon mhs : sablon) {
+            Sablon daftar = new Sablon();
             daftar.set_id(mhs.get_id());
-            daftar.set_nama(mhs.get_nama());
-            daftar.set_kelas(mhs.get_kelas());
-            ListMahasiswa.add(daftar);
-            if ((ListMahasiswa.isEmpty()))
+            daftar.set_jenis(mhs.get_jenis());
+            daftar.set_harga(mhs.get_harga());
+            listSablon.add(daftar);
+            if ((listSablon.isEmpty()))
                 Toast.makeText(MainRead.this, "Tidak ada data",
                         Toast.LENGTH_SHORT).show();
             else {
@@ -48,30 +48,30 @@ public class MainRead extends AppCompatActivity implements AdapterView.OnItemCli
     public void onItemClick(AdapterView<?> parent, View view, int
             i, long l) {
         Object o = mListView.getItemAtPosition(i);
-        Mahasiswa detailMhs = (Mahasiswa)o;
+        Sablon detailMhs = (Sablon)o;
         String Sid = detailMhs.get_id();
-        String Snama = detailMhs.get_nama();
-        String Skelas = detailMhs.get_kelas();
+        String Sjenis = detailMhs.get_jenis();
+        String Sharga = detailMhs.get_harga();
         Intent goUpdel = new Intent(MainRead.this,
                 MainUpdel.class);
         goUpdel.putExtra("Iid", Sid);
-        goUpdel.putExtra("Inama", Snama);
-        goUpdel.putExtra("Ikelas", Skelas);
+        goUpdel.putExtra("Ijenis", Sjenis);
+        goUpdel.putExtra("Iharga", Sharga);
         startActivity(goUpdel);
     }
     @Override
     protected void onResume() {
         super.onResume();
-        ListMahasiswa.clear();
+        listSablon.clear();
         mListView.setAdapter(adapter_off);
-        List<Mahasiswa> mahasiswa = db.ReadMahasiswa();
-        for (Mahasiswa mhs : mahasiswa) {
-            Mahasiswa daftar = new Mahasiswa();
+        List<Sablon> sablon = db.ReadSablon();
+        for (Sablon mhs : sablon) {
+            Sablon daftar = new Sablon();
             daftar.set_id(mhs.get_id());
-            daftar.set_nama(mhs.get_nama());
-            daftar.set_kelas(mhs.get_kelas());
-            ListMahasiswa.add(daftar);
-            if ((ListMahasiswa.isEmpty()))
+            daftar.set_jenis(mhs.get_jenis());
+            daftar.set_harga(mhs.get_harga());
+            listSablon.add(daftar);
+            if ((listSablon.isEmpty()))
                 Toast.makeText(MainRead.this, "Tidak ada data",
                         Toast.LENGTH_SHORT).show();
             else {

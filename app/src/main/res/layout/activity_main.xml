@@ -11,20 +11,25 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:gravity="center"
     tools:context=".MainActivity">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello Teman - Teman!" />
+        android:text="Selamat Datang di Outthink Konveksi!" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="create"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#3F51B5"
         android:onClick="create"
-        android:layout_marginTop="20dp"/>
+        android:text="create" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="read"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#3F51B5"
         android:onClick="read"
-        android:layout_marginTop="10dp"/>
+        android:text="read" />
 </LinearLayout>

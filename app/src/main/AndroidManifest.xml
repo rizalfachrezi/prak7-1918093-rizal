@@ -21,6 +21,10 @@
         <activity android:name=".MainRead" android:exported="true"/>
         <activity android:name=".MainCreate" android:exported="true"/>
         <activity android:name=".MainUpdel" android:exported="true"/>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
